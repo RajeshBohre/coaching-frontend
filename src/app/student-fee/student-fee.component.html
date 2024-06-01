@@ -1,0 +1,86 @@
+<h2>Fees Submission</h2>
+<form [formGroup]="feeForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="studentName">Student</label>
+                <p-dropdown placeholder="select" appendTo="body" selection="single"
+                    [ngClass]="{ 'is-invalid': submitted && f.studentName.errors }" formControlName="studentName"
+                    [options]="students" optionLabel="label"></p-dropdown>
+                <div *ngIf="submitted && f.studentName.errors" class="invalid-feedback">
+                    <div *ngIf="f.studentName.errors.required">Please select the student</div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label for="fathername">Father Name</label>
+                <input type="text" formControlName="fathername" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.fathername.errors }" />
+                <div *ngIf="submitted && f.fathername.errors" class="invalid-feedback">
+                    <div *ngIf="f.fathername.errors.required">Father Name is required</div>
+                </div>
+            </div> -->
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" formControlName="amount" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+                <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                    <div *ngIf="f.amount.errors.required">Phone number is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="paidTo">Paid To</label>
+                <p-dropdown placeholder="select" appendTo="body" selection="single"
+                    [ngClass]="{ 'is-invalid': submitted && f.paidTo.errors }"
+                     formControlName="paidTo"
+                    [options]="paidToList" optionLabel="label"></p-dropdown>
+                
+                <div *ngIf="submitted && f.paidTo.errors" class="invalid-feedback">
+                    <div *ngIf="f.paidTo.errors.required">Father Phone number is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="paidBy">Paid By</label>
+                <input type="text" formControlName="paidBy" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.paidBy.errors }" />
+                <div *ngIf="submitted && f.paidBy.errors" class="invalid-feedback">
+                    <div *ngIf="f.paidBy.errors.required">Father Phone number is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="paidOn">Paid On</label>
+                <p-calendar inputId="calendar" formControlName="paidOn" [disabledDays]="[]" [showIcon]="true"
+                    name="date" [ngClass]="{ 'is-invalid': submitted && f.paidOn.errors }"></p-calendar>
+                <div *ngIf="submitted && f.paidOn.errors" class="invalid-feedback">
+                    <div *ngIf="f.paidOn.errors.required">Father Phone number is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="transactionMode">Transaction Mode</label>
+                <input type="text" formControlName="transactionMode" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.transactionMode.errors }" />
+                <div *ngIf="submitted && f.transactionMode.errors" class="invalid-feedback">
+                    <div *ngIf="f.transactionMode.errors.required">Father Phone number is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment</label>
+                <input type="text" formControlName="comment" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.comment.errors }" />
+                <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
+                    <div *ngIf="f.comment.errors.required">Father Phone number is required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px;" class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Submit</button>
+        <img *ngIf="loading"
+            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+<p-dialog header="Confirmation" [(visible)]="visible" [style]="{width: '50vw'}">
+    <p>
+        Fees Recieved Successfully.
+    </p>
+</p-dialog>

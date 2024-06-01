@@ -1,0 +1,38 @@
+
+/* You can add global styles to this file, and also import other style files */
+@import '~primeicons/primeicons.css';
+@import "../node_modules/ag-grid-community/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/styles/ag-theme-alpine.css";
+
+.form-control {
+    background: #7e7777;
+}
+.p-dropdown {
+    width: 100%;
+    background: #7c7575;
+}
+.dummy .p-dropdown {
+    width: 30%;
+    background: #7c7575;
+}
+.p-inputtext {
+    background: #7c7575;
+}
+.p-calendar {
+    width: 100%;
+    background: #7c7575;
+}
+.p-multiselect {
+    width: 100%;
+    background: #7c7575;
+}
+.p-multiselect-panel, .p-multiselect-panel .p-multiselect-header  {
+    background: #7c7575;
+}
+.p-checkbox .p-checkbox-box {
+    background: #7c7575;
+}
+.p-dropdown .p-dropdown-trigger {
+    background: transparent;
+    color: #504b4b;
+}

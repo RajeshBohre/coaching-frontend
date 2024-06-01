@@ -1,0 +1,25 @@
+<div>
+<label>Search By Name: </label>
+<p-dropdown class="dummy" style="margin-left: 5px;" [options]="studentName"  placeholder="select"
+    selection="single" (onChange)="getStudentByName($event)"
+    [(ngModel)]="selectedName" optionLabel="value"></p-dropdown>
+<label style="margin-left: 2%;">Search By Class: </label>
+<p-dropdown class="dummy" style="margin-left: 5px;" [options]="studentClass"  placeholder="select"
+    selection="single" (onChange)="getStudentByClass($event)"
+    [(ngModel)]="selectedClass" optionLabel="label"></p-dropdown>
+</div>
+<label>Delete Student</label>
+<i class="bi bi-trash" href="#" (click)="removeStudent()"></i>
+<ag-grid-angular style="width: 100%; height: 500px;" 
+class="ag-theme-alpine" id="firstGrid" (rowClicked)='onRowClicked($event)'
+[columnDefs]="colDef" [rowData]="rowData">
+</ag-grid-angular>
+<p-dialog header="Confirmation" [(visible)]="visible" [style]="{width: '50vw'}">
+    <p>
+        Are you sure you want to delete the Student.
+    </p>
+    <footer style="text-align: center;">
+        <button class="btn btn-primary" (click)="removeConfirm()">Yes</button>
+        <button (click)="removeNo()" style="margin-left: 2%;" class="btn btn-primary">No</button>
+    </footer>
+</p-dialog>

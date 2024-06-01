@@ -1,0 +1,15 @@
+<label>Search By Name: </label>
+<p-dropdown class="dummy" style="margin-left: 5px; width: 30%;" [options]="studentName"  placeholder="select"
+    selection="single" (onChange)="getStudentByName($event)" filterBy="value"
+    [(ngModel)]="selectedName" optionLabel="value"></p-dropdown>
+<label style="margin-left: 2%;">Search By Class: </label>
+<p-dropdown class="dummy" style="margin-left: 5px; width: 30%;" [options]="paidToList"  placeholder="select"
+    selection="single" (onChange)="getStudentByPaidTo($event)"
+    [(ngModel)]="selectedPaidTo" optionLabel="label"></p-dropdown>
+<label>Total Fees Amout : {{totalStudentFees}}  </label>
+<label style="margin-left: 2%;">Total Remaining Amout : {{totalRemainingFees}}  </label>
+<label style="margin-left: 2%;">Total Recived Amout : {{totalRecieved}}  </label>
+<ag-grid-angular style="width: 100%; height: 500px;" 
+class="ag-theme-alpine" id="firstGrid" 
+[columnDefs]="colDef" [rowData]="rowData">
+</ag-grid-angular>
