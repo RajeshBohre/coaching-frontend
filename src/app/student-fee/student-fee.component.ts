@@ -23,6 +23,7 @@ export class StudentFeeComponent implements OnInit {
     }
   ]
   ngOnInit(): void {
+    this.feeCheck();
     this.feeForm = this.formBuilder.group({
       studentName: ['', Validators.required],
       amount: ['', Validators.required],
@@ -51,6 +52,15 @@ export class StudentFeeComponent implements OnInit {
   }
 
   get f() { return this.feeForm.controls; }
+  feeData: any;
+  updateFee: boolean = false;
+  feeCheck() {
+    this.commonservice.getStudentFees().subscribe(data => {
+
+    this.feeData = data;
+
+    })
+  }
   onSubmit() {
     this.submitted = true;
     this.visible = true
@@ -58,13 +68,31 @@ export class StudentFeeComponent implements OnInit {
     if (this.feeForm.invalid) {
         return;
     } else {
-      this.commonservice.feesSubmission(this.feeForm.value).subscribe((response: any) => {
+      let index = this.feeData.findIndex((name: any) => name.studentName.value == this.feeForm.value.studentName.value)
+      
+        if(index != -1) {
+          this.updateFee = true;
+        }
+      if(this.updateFee) {
+        this.feeForm.value.id = this.feeData[index]._id;
+        this.feeForm.value.amount = Number(this.feeData[index].amount) + Number(this.feeForm.value.amount);
+        this.commonservice.updateBacklog(this.feeForm.value).subscribe((response: any) => {
         
-        this.visible = true;
-        console.log("Student Registered Successfully");
+          this.visible = true;
+          console.log("Student Registered Successfully");
+        }
+          
+        )
+      } else {
+        this.commonservice.feesSubmission(this.feeForm.value).subscribe((response: any) => {
+        
+          this.visible = true;
+          console.log("Student Registered Successfully");
+        }
+          
+        )
       }
-        
-      )
+      
     }
 
     //this.loading = true;

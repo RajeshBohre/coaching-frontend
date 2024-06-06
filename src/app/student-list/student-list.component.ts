@@ -39,12 +39,27 @@ export class StudentListComponent implements OnInit {
     this.getStudentList();
   }
   getStudentList(){
+    let subList: any = [];
     this.commonService.getStudentList().subscribe(data=> {
       if(data) {
         console.log("monthly exp",data)
         this.rowData = data;
-        this.rowData.forEach((item: {firstName:any; studentClass: any}) =>{
+        this.rowData.forEach((item: {firstName:any; studentClass: any, subject: any}) =>{
+          if( item.subject ) {
+            subList = [];
+            if(item.subject.length>= 1 ) {
+              
+              item.subject.forEach((element: {value:any} )=> {
+                subList.push(element.value)
+              })
+              item.subject = subList.join(',');
+            } else {
+              item.subject = item.subject.value;
+            }
+            
+          } 
           
+          item.studentClass = item.studentClass.value;
           this.studentName.push({label: item.firstName, value: item.firstName}) 
         })
         this.studentClass.push({label: "11th", value: "11th"}, 
