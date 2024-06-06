@@ -153,7 +153,7 @@ export class SyudentBacklogComponent implements OnInit {
                   remainingFee: Number(item.totalFee)- this.feeData[index].amount,
                   recievedFee: Number(this.feeData[index].amount),
                   recievedBy: this.feeData[index].paidTo.value,
-                  lastRecievedDate: this.feeData[index].paidOn,
+                  lastRecievedDate: new Date(this.feeData[index].paidOn).toDateString(),
                   totalFee: item.totalFee,
                   Address: item.Address
                 })
