@@ -5,8 +5,8 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable()
 export class CommonService {
 constructor(private http: HttpClient) { }
-url: String = 'http://localhost:8082/api/'
-//url: String = 'https://coaching-hbwp.onrender.com/api/';
+//url: String = 'http://localhost:8082/api/'
+url: String = 'https://coaching-hbwp.onrender.com/api/';
 userRole: any;
 studentRegistration(student: any) {
     return this.http.post(this.url + 'StudentRegistration/', student).
